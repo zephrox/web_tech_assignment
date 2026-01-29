@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search</title>
+</head>
+
+<body>
+
+<fieldset>
+    <legend>SEARCH</legend>
+
+    <input type="text" id="name" onkeyup="ajax()">
+    <input type="button" value="Search By Name" onclick="ajax()">
+
+    <br><br>
+
+    <div id="result"></div>
+
+</fieldset>
+
+<script>
+function ajax(){
+
+    let name = document.getElementById('name').value;
+
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            document.getElementById('result').innerHTML = this.responseText;
+        }
+    }
+
+    xhttp.open('GET','search.php?name='+name,true);
+    xhttp.send();
+}
+</script>
+
+</body>
+</html>
